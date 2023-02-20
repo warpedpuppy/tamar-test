@@ -2,8 +2,6 @@
 const express = require('express');
 const app = express();
 
-const http = require('http');
-
 let topMovies = [ 
     {
         title: 'Titanic',
@@ -46,6 +44,8 @@ let topMovies = [
         director: 'Todd Haynes',
       },
     ];
+
+    app.use(morgan('common'));
 
     app.get('/', (req, res) => {
         res.send('Welcome to myFlix!');
