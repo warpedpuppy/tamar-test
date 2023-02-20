@@ -46,23 +46,23 @@ let topMovies = [
       },
     ];
 
-    app.use(express.static('public'));
-    app.use(morgan('common'));
+app.use(express.static('public'));
+app.use(morgan('common'));
 
-    app.get('/', (req, res) => {
-        res.send('Welcome to myFlix!');
-      });
+app.get('/', (req, res) => {
+   res.send('Welcome to myFlix!');
+});
       
-      app.get('/documentation', (req, res) => {
-        res.sendFile('public/documentation.html', { root: __dirname });
-      });
+app.get('/documentation', (req, res) => {
+    res.sendFile('public/documentation.html', { root: __dirname });
+});
       
-      app.get('/movies', (req, res) => {
-        res.json(topMovies);
-      });
+app.get('/movies', (req, res) => {
+    res.json(topMovies);
+});
 
-      const bodyParser = require('body-parser'),
-  methodOverride = require('method-override');
+const bodyParser = require('body-parser'),
+methodOverride = require('method-override');
 
 app.use(bodyParser.urlencoded({
   extended: true
