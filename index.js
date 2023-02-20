@@ -61,6 +61,21 @@ let topMovies = [
         res.json(topMovies);
       });
 
+      const bodyParser = require('body-parser'),
+  methodOverride = require('method-override');
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
+app.use(methodOverride());
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Oops, something broke! Please try again later.');
+});
+
     app.listen(8080, () => {
         console.log('Your app is running on port 8080.');
       });
