@@ -3,6 +3,9 @@ const express = require('express');
 morgan = require('morgan');
 const app = express();
 
+const bodyParser = require('body-parser'),
+methodOverride = require('method-override');
+
 let topMovies = [ 
     {
         title: 'Titanic',
@@ -60,9 +63,6 @@ app.get('/documentation', (req, res) => {
 app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
-
-const bodyParser = require('body-parser'),
-methodOverride = require('method-override');
 
 app.use(bodyParser.urlencoded({
   extended: true
