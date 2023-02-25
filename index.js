@@ -142,13 +142,18 @@ let topMovies = [
 app.get('/', (req, res) => {
    res.send('Welcome to myFlix!');
 });
+
+app.get('/Movies', (req, res) => {
+  res.json(topMovies);
+});
+
+app.get('/topMovies/:name', (req, res) => {
+  res.json(topMovies.find((movie) =>
+    { return movie.name === req.params.name }));
+});
       
 app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname });
-});
-      
-app.get('/movies', (req, res) => {
-    res.json(topMovies);
 });
 
 app.use((err, req, res, next) => {
