@@ -126,6 +126,19 @@ let topMovies = [
   },
   ];
 
+  let users = [
+    {
+      id: 1,
+      name: 'Tamar',
+      favMovies: 'Home for christmas',
+    },
+    {
+      id: 2,
+      name: 'Maggie',
+      favMovies: [],
+    },
+  ];
+
 app.get('/', (req, res) => {
    res.send('Welcome to myFlix!');
 });
