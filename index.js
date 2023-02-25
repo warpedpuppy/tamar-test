@@ -13,115 +13,125 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-let topMovies = [ 
+let movies = [ 
   {    
       id: 1,
-      name: 'Titanic',
+      title: 'Titanic',
+      genre: {
+        name: 'Romance',
+        description: 'Genre description Romance',
+      },
       director: {
            name: 'James Cameron',
-           birth: 1954
+           birth: 1954,
       },
-      genre: {
-         Name: 'Drama',
-     },
   },
   { 
       id: 2,
-      name: 'Harry Potter and the Prisoner of Azkaban',
-      director: {
-           name: 'Alfonso Cuaron',
-           birth: 1961
-      },
+      title: 'Harry Potter and the Prisoner of Azkaban',
       genre: {
-         name: 'Fantasy'
+        name: 'Fantasy',
+        description: 'Genre description Fantasy',
+        },
+        director: {
+           name: 'Alfonso Cuaron',
+           birth: 1961,
       },
   },
   {
       id: 3,
-      name: 'The Holiday',
+      title: 'The Holiday',
+      genre: {
+        name: 'Comedy',
+        description: 'Genre description Comedy',
+        },
       director: {
           name: 'Nancy Meyers',
-          birth: 1949
-      },
-      genre: {
-          name: 'Romance'
+          birth: 1949,
       },
   },
   {
       id: 4,
-      name: 'Home for Christmas',
+      title: 'Home for Christmas',
+      genre: {
+        name: 'Comedy',
+        description: 'Genre description Comedy',
+        },
       director: {
          name: 'Per-Olav Sorensen',
-         birth: 1963
-      },
-      genre: {
-         name: 'Comedy'
+         birth: 1963,
       },
   },
   {
       id: 5,
-      name: 'Home Alone',
+      title: 'Home Alone',
+      genre: {
+        name: 'Family',
+        description: 'Genre description Family',
+      },
       director: {
          name: 'Chris Columbus',
-         birth: 1958
-      },
-      genre: {
-         name: 'Family'
+         birth: 1958,
       },
   },
   {
       id: 6,
-      name: 'Roman Holiday',
+      title: 'Roman Holiday',
+      genre: {
+        name: 'Romance',
+        description: 'Genre description Romance',
+      },
       director: {
          name: 'William Wyler',
-         birth: 1902
-      },
-      genre: {
-         name: 'Comedy'
+         birth: 1902,
       },
   },
   {
       id: 7,
-      name: 'Call me by your name',
+      title: 'Call me by your name',
+      genre: {
+        name: 'Drama',
+        description: 'Genre description Drama',
+      },
       director: {
          name:'Luca Guadagnino',
-         birth: 1971
-      },
-      genre: {
-         name: 'Romance'
+         birth: 1971,
       },
   },
   {
       id: 8,
-      name: 'Forrest Gump',
+      title: 'Forrest Gump',
+      genre: {
+        name: 'Drama',
+        description: 'Genre description Drama',
+      },
       director: {
          name:'Robert Zemeckis',
-         birth: 1952
-      },
-      genre: {
-        name: 'Drama'
+         birth: 1952,
       },
   },
   {
       id: 9,
-      name: 'Brokeback Mountain',
+      title: 'Brokeback Mountain',
+      genre: {
+        name: 'Drama',
+        description: 'Genre description Drama',
+      },
       director: {
         name:'Ang Lee',
-        birth: 1954
-      },
-      genre: {
-        name: 'Drama'
+        birth: 1954,
       },
   },
   {
       id: 10,
-      name: 'Carol',
+      title: 'Carol',
+      genre: {
+        name: 'Drama',
+        description: 'Genre description Drama',
+      },
       director: {
         name:'Todd Haynes',
         birth: 1961
-      },
-      genre: {
-         name: 'Drama'
       },
   },
   ];
@@ -144,30 +154,18 @@ app.get('/', (req, res) => {
 });
 
 app.get('/Movies', (req, res) => {
-  res.json(topMovies);
+  res.json(movies);
 });
 
-app.get('/topMovies/:name', (req, res) => {
-  res.json(topMovies.find((movie) =>
-    { return movie.name === req.params.name }));
+app.get('/movies/:title', (req, res) => {
+  res.json(movies.find((movie) =>
+    { return movie.title === req.params.title 
+    }));
 });
 
-app.get('/topMovies/directors/:directorName', (req, res) => {
-  const { directorName } = req.params;
-  const director = topMovies.find(
-    (movie) => movie.Director.Name === directorName
-  ).Director;
-
-  if (director) {
-    res.status(200).json(director);
-  } else {
-    res.status(404).send('Not found in our database');
-  }
-});
-
-app.get('/topMovies/genre/:genreName', (req, res) => {
+app.get('/movies/genre/:genreName', (req, res) => {
 	const { genreName } = req.params;
-	const genre = topMovies.find((movie) => movie.Genre.Name === genreName).Genre;
+	const genre = movies.find((movie) => movie.genre.name === genreName).genre;
 
 	if (genre) {
 		res.status(200).json(genre);
@@ -176,28 +174,44 @@ app.get('/topMovies/genre/:genreName', (req, res) => {
 	}
 });
 
-app.post('/users', (req, res) => {
-  let newUser = req.body;
+app.get('/movies/director/:directorName', (req, res) => {
+	const { directorName } = req.params;
+	const director = movies.find(
+		(movie) => movie.director.name === directorName
+	).director;
 
-  if (!newUser.name) {
-    const message = 'Missing name in request body';
-    res.status(400).send(message);
-  } else {
-    newUser.id = uuid.v4();
-    users.push(newUser);
-    res.status(201).send(newUser);
-  }
+	if (director) {
+		res.status(200).json(director);
+	} else {
+		res.status(404).send('Director not in database');
+	}
 });
 
-app.put('/users/:name', (req, res) => {
-  let user = users.find((user) => { return user.name === req.params.name });
+app.post('/users', (req, res) => {
+	const newUser = req.body;
 
-  if (user) {
-    user.name[req.params.name] = parseInt(req.params.userName);
-    res.status(201).send('User ' + req.params.name + ' was assigned a name of ' + req.params.userName + ' in ' + req.params.name);
-  } else {
-    res.status(404).send('User with the name ' + req.params.name + ' was not found.');
-  }
+	if (newUser.name) {
+		newUser.id = uuid.v4();
+		users.push(newUser);
+		res.status(201).json(newUser);
+	} else {
+		res.status(400).send('New username must be filled out');
+	}
+});
+
+
+app.put('/users/:id', (req, res) => {
+	const { id } = req.params;
+	const updatedUser = req.body;
+
+	let user = users.find((user) => user.id == id);
+
+	if (user) {
+		user.name = updatedUser.name;
+		res.status(200).json(user);
+	} else {
+		res.status(400).send('User not found');
+	}
 });
 
 app.post('/users/:id/:movieName', (req, res) => {
