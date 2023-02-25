@@ -209,6 +209,23 @@ app.post('/users/:id/:movieName', (req, res) => {
     res.status(400).send('User not found');
   }
 });
+
+app.delete('/users/:id/:movieName', (req, res) => {
+  const { id, movieName } = req.params;
+
+  let user = users.find((user) => user.id == id);
+
+  if (user) {
+    user.favMovies = user.favMovies.filter(
+      (title) => title !== movieName
+    );
+    res.status(200).send(
+      `Deleted from your Favorites`
+    );
+  } else {
+    res.status(400).send('User not found');
+  }
+});
       
 app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname });
