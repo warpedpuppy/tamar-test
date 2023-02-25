@@ -22,7 +22,7 @@ let topMovies = [
            birth: 1954
       },
       genre: {
-         Name: 'Romance/Drama',
+         Name: 'Drama',
      },
   },
   { 
@@ -33,7 +33,7 @@ let topMovies = [
            birth: 1961
       },
       genre: {
-         name: 'Fantasy/Adventure'
+         name: 'Fantasy'
       },
   },
   {
@@ -44,7 +44,7 @@ let topMovies = [
           birth: 1949
       },
       genre: {
-          name: 'Romance/Comedy'
+          name: 'Romance'
       },
   },
   {
@@ -55,7 +55,7 @@ let topMovies = [
          birth: 1963
       },
       genre: {
-         name: 'Comedy/drama '
+         name: 'Comedy'
       },
   },
   {
@@ -66,7 +66,7 @@ let topMovies = [
          birth: 1958
       },
       genre: {
-         name: 'Comedy/Family'
+         name: 'Family'
       },
   },
   {
@@ -77,7 +77,7 @@ let topMovies = [
          birth: 1902
       },
       genre: {
-         name: 'Romance/Comedy'
+         name: 'Comedy'
       },
   },
   {
@@ -88,7 +88,7 @@ let topMovies = [
          birth: 1971
       },
       genre: {
-         name: 'Romance/Drama'
+         name: 'Romance'
       },
   },
   {
@@ -99,7 +99,7 @@ let topMovies = [
          birth: 1952
       },
       genre: {
-        name: 'Romance, Drama'
+        name: 'Drama'
       },
   },
   {
@@ -110,7 +110,7 @@ let topMovies = [
         birth: 1954
       },
       genre: {
-        name: 'Romance/Drama'
+        name: 'Drama'
       },
   },
   {
@@ -121,7 +121,7 @@ let topMovies = [
         birth: 1961
       },
       genre: {
-         name: 'Romance/Drama'
+         name: 'Drama'
       },
   },
   ];
