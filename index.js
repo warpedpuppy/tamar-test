@@ -183,6 +183,17 @@ app.post('/users', (req, res) => {
     res.status(201).send(newUser);
   }
 });
+
+app.put('/users/:name', (req, res) => {
+  let user = users.find((user) => { return user.name === req.params.name });
+
+  if (user) {
+    user.name[req.params.name] = parseInt(req.params.userName);
+    res.status(201).send('User ' + req.params.name + ' was assigned a name of ' + req.params.userName + ' in ' + req.params.name);
+  } else {
+    res.status(404).send('User with the name ' + req.params.name + ' was not found.');
+  }
+});
       
 app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname });
