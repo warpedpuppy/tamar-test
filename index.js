@@ -152,6 +152,19 @@ app.get('/topMovies/:name', (req, res) => {
     { return movie.name === req.params.name }));
 });
 
+app.get('/topMovies/directors/:directorName', (req, res) => {
+  const { directorName } = req.params;
+  const director = topMovies.find(
+    (movie) => movie.Director.Name === directorName
+  ).Director;
+
+  if (director) {
+    res.status(200).json(director);
+  } else {
+    res.status(404).send('Not found in our database');
+  }
+});
+
 app.post('/users', (req, res) => {
   let newUser = req.body;
 
