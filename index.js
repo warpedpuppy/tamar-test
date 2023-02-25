@@ -7,47 +7,118 @@ const bodyParser = require('body-parser'),
 methodOverride = require('method-override');
 
 let topMovies = [ 
-    {
-        title: 'Titanic',
-        director: 'James Cameron',
+  {    
+      id: 1,
+      name: 'Titanic',
+      director: {
+           name: 'James Cameron',
+           birth: 1954
       },
-      {
-        title: 'Harry Potter and the Prisoner of Azkaban',
-        director: 'Alfonso Cuaron',
+      genre: {
+         Name: 'Romance/Drama',
+     },
+  },
+  { 
+      id: 2,
+      name: 'Harry Potter and the Prisoner of Azkaban',
+      director: {
+           name: 'Alfonso Cuaron',
+           birth: 1961
       },
-      {
-        title: 'The Holiday',
-        director: 'Nancy Meyers',
+      genre: {
+         name: 'Fantasy/Adventure'
       },
-      {
-        title: 'Home for Christmas',
-        director: 'Per-Olav Sorensen',
+  },
+  {
+      id: 3,
+      name: 'The Holiday',
+      director: {
+          name: 'Nancy Meyers',
+          birth: 1949
       },
-      {
-        title: 'Home Alone',
-        director: 'Chris Columbus',
+      genre: {
+          name: 'Romance/Comedy'
       },
-      {
-        title: 'Roman Holiday',
-        director: 'William Wyler',
+  },
+  {
+      id: 4,
+      name: 'Home for Christmas',
+      director: {
+         name: 'Per-Olav Sorensen',
+         birth: 1963
       },
-      {
-        title: 'Call me by your name',
-        director: 'Luca Guadagnino',
+      genre: {
+         name: 'Comedy/drama '
       },
-      {
-        title: 'Forrest Gump',
-        director: 'Robert Zemeckis',
+  },
+  {
+      id: 5,
+      name: 'Home Alone',
+      director: {
+         name: 'Chris Columbus',
+         birth: 1958
       },
-      {
-        title: 'Brokeback Mountain',
-        director: 'Ang Lee',
+      genre: {
+         name: 'Comedy/Family'
       },
-      {
-        title: 'Carol',
-        director: 'Todd Haynes',
+  },
+  {
+      id: 6,
+      name: 'Roman Holiday',
+      director: {
+         name: 'William Wyler',
+         birth: 1902
       },
-    ];
+      genre: {
+         name: 'Romance/Comedy'
+      },
+  },
+  {
+      id: 7,
+      name: 'Call me by your name',
+      director: {
+         name:'Luca Guadagnino',
+         birth: 1971
+      },
+      genre: {
+         name: 'Romance/Drama'
+      },
+  },
+  {
+      id: 8,
+      name: 'Forrest Gump',
+      director: {
+         name:'Robert Zemeckis',
+         birth: 1952
+      },
+      genre: {
+        name: 'Romance, Drama'
+      },
+  },
+  {
+      id: 9,
+      name: 'Brokeback Mountain',
+      director: {
+        name:'Ang Lee',
+        birth: 1954
+      },
+      genre: {
+        name: 'Romance/Drama'
+      },
+  },
+  {
+      id: 10,
+      name: 'Carol',
+      director: {
+        name:'Todd Haynes',
+        birth: 1961
+      },
+      genre: {
+         name: 'Romance/Drama'
+      },
+  },
+  ];
+
 
 app.use(express.static('public'));
 app.use(morgan('common'));
