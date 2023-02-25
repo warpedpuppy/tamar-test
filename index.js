@@ -6,6 +6,13 @@ const uuid = require('uuid');
 const bodyParser = require('body-parser'),
 methodOverride = require('method-override');
 
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(morgan('common'));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 let topMovies = [ 
   {    
       id: 1,
@@ -119,10 +126,6 @@ let topMovies = [
   },
   ];
 
-
-app.use(express.static('public'));
-app.use(morgan('common'));
-
 app.get('/', (req, res) => {
    res.send('Welcome to myFlix!');
 });
@@ -134,13 +137,6 @@ app.get('/documentation', (req, res) => {
 app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-app.use(bodyParser.json());
-app.use(methodOverride());
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
