@@ -166,7 +166,7 @@ app.get('/topMovies/directors/:directorName', (req, res) => {
 });
 
 app.get('/topMovies/:genre', (req, res) => {
-  res.json(topMovies.find((movie) =>
+  res.json(topMovies.find((genre) =>
     { return movie.genre === req.params.genre }));
 });
 
