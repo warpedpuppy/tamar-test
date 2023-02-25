@@ -194,6 +194,21 @@ app.put('/users/:name', (req, res) => {
     res.status(404).send('User with the name ' + req.params.name + ' was not found.');
   }
 });
+
+app.post('/users/:id/:movieName', (req, res) => {
+  const { id, movieName} = req.params;
+
+  let user = users.find((user) => user.id == id);
+
+  if (user) {
+    user.favMovies.push(movieName);
+    res.status(200).send(
+      `Succesfully added to your favourites`
+    );
+  } else {
+    res.status(400).send('User not found');
+  }
+});
       
 app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname });
