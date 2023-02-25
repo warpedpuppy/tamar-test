@@ -165,15 +165,9 @@ app.get('/topMovies/directors/:directorName', (req, res) => {
   }
 });
 
-app.get('/movies/genre/:genreName', (req, res) => {
-	const { genreName } = req.params;
-	const genre = topMovies.find((movie) => movie.Genre.Name === genreName).Genre;
-
-	if (genre) {
-		res.status(200).json(genre);
-	} else {
-		res.status(404).send('Genre not in database');
-	}
+app.get('/topMovies/:genre', (req, res) => {
+  res.json(topMovies.find((movie) =>
+    { return movie.genre === req.params.genre }));
 });
 
 app.post('/users', (req, res) => {
