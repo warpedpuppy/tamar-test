@@ -226,6 +226,15 @@ app.delete('/users/:id/:movieName', (req, res) => {
     res.status(400).send('User not found');
   }
 });
+
+app.delete('/users/:id', (req, res) => {
+  let user = users.find((user) => { return user.id === req.params.id });
+
+  if (user) {
+    user = users.filter((obj) => { return obj.id !== req.params.id });
+    res.status(201).send('user ' + req.params.id + ' was deleted.');
+  }
+});
       
 app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname });
