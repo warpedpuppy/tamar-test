@@ -165,6 +165,12 @@ app.get('/topMovies/directors/:directorName', (req, res) => {
   }
 });
 
+app.get('/topMovies/genre/:genreName', (req, res) => {
+	const { genreName } = req.params;
+	const genre = topMovies.find((movie) => movie.Genre.Name === genreName).Genre;
+		res.status(200).json(genre);
+});
+
 app.post('/users', (req, res) => {
   let newUser = req.body;
 
