@@ -151,6 +151,19 @@ app.get('/topMovies/:name', (req, res) => {
   res.json(topMovies.find((movie) =>
     { return movie.name === req.params.name }));
 });
+
+app.post('/users', (req, res) => {
+  let newUser = req.body;
+
+  if (!newUser.name) {
+    const message = 'Missing name in request body';
+    res.status(400).send(message);
+  } else {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).send(newUser);
+  }
+});
       
 app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname });
