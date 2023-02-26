@@ -22,7 +22,7 @@ let movies = [
         description: 'Genre description Romance',
       },
       director: {
-           name: 'James Cameron',
+           name: 'Cameron',
            birth: 1954,
       },
   },
@@ -163,7 +163,7 @@ app.get('/movies/:title', (req, res) => {
     }));
 });
 
-app.get('/movies/genre/:genreName', (req, res) => {
+app.get('/genre/:genreName', (req, res) => {
 	const { genreName } = req.params;
 	const genre = movies.find((movie) => movie.genre.name === genreName).genre;
 
@@ -174,10 +174,9 @@ app.get('/movies/genre/:genreName', (req, res) => {
 	}
 });
 
-app.get('/movies/director/:directorName', (req, res) => {
+app.get('/director/:directorName', (req, res) => {
 	const { directorName } = req.params;
-	const director = movies.find(
-		(movie) => movie.director.name === directorName
+	const director = movies.find((movie) => movie.director.name === directorName
 	).director;
 
 	if (director) {
@@ -189,7 +188,7 @@ app.get('/movies/director/:directorName', (req, res) => {
 
 app.post('/users', (req, res) => {
 	const newUser = req.body;
-
+  
 	if (newUser.name) {
 		newUser.id = uuid.v4();
 		users.push(newUser);
@@ -214,7 +213,7 @@ app.put('/users/:id', (req, res) => {
 	}
 });
 
-app.post('/users/:id/:movieName', (req, res) => {
+app.patch('/users/:id/:movieName', (req, res) => {
   const { id, movieName} = req.params;
 
   let user = users.find((user) => user.id == id);
