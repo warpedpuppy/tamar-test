@@ -78,7 +78,7 @@ single movie by title to the user
         <td>/genre/:genreName</td>
         <td>GET</td>
         <td>:genreName</td>
-        <td>-</td>
+        <td>none</td>
         <td>A JSON object holding data about a specific genre of movie</td>
       </tr>
       <tr>
@@ -98,18 +98,18 @@ single movie by title to the user
         <td>A JSON object holding data about the user that was added</td>
       </tr>
       <tr>
-        <td>Allows users to update their user info (username)</td>
+        <td>Allows users to update their user info</td>
         <td>/users/:id</td>
         <td>PUT</td>
         <td>:id</td>
         <td>None</td>
-        <td>A JSON object holding data about the updated user information</td>
+        <td>A text message holding data about the updated user information</td>
       </tr>
       <tr>
         <td>Allows users to add a movie to their list of favourites</td>
-        <td>/users/:id/:movieName</td>
-        <td>POST</td>
-        <td>:id, :movieName</td>
+        <td>/users/:id/movies/:MovieId</td>
+        <td>Patch</td>
+        <td>:id, :movieId</td>
         <td>None</td>
         <td>A JSON object holding data about the user and the movie that was added</td>
       </tr>
@@ -118,7 +118,7 @@ single movie by title to the user
         <td>/users/:id/:movieName</td>
         <td>DELETE</td>
         <td>:id, :movieName</td>
-        <td>-</td>
+        <td>none</td>
         <td>A JSON object holding data about the user and the movie that was succesfully removed from the favourites</td>
       </tr>
       <tr>
@@ -126,7 +126,7 @@ single movie by title to the user
         <td>/users/:id</td>
         <td>DELETE</td>
         <td>:id</td>
-        <td>-</td>
+        <td>none</td>
         <td>A text message indicating whether the user has successfully deregistered</td>
       </tr>
      </tbody>
