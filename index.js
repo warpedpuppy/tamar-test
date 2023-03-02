@@ -213,10 +213,11 @@ app.put('/users/:id', (req, res) => {
 	}
 });
 
+//add a new movie to favs
 app.patch('/users/:id/movies/:MovieId', (req, res) => {
-  const { id, MovieId} = req.params;
+  const { MovieId} = req.params.id;
 
-  let user = users.find((user) => user.id == id);
+  let user = users.find((user) => { return user.id === req.params.id });
 
   if (user) {
     user.favoriteMovie.push(MovieId);
@@ -229,13 +230,13 @@ app.patch('/users/:id/movies/:MovieId', (req, res) => {
 });
 
 
-app.delete('/users/:id/:movieName', (req, res) => {
+app.delete('/users/:id/movies/:MovieId', (req, res) => {
   const { id, movieName } = req.params;
 
   let user = users.find((user) => user.id == id);
 
   if (user) {
-    user.favoriteMovies = user.favoriteMovies.filter(
+    user.favoriteMovie = user.favoriteMovie.filter(
       (title) => title !== movieName
     );
     res.status(200).send(
