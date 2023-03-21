@@ -22,7 +22,7 @@ let movies = [
         description: 'Genre description Romance',
       },
       director: {
-           name: 'Cameron',
+           name: 'James Cameron',
            birth: 1954,
       },
   },
