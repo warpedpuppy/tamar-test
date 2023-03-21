@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
-const Models = require('./models.js');
-
-const Movies = Models.Movie;
-const Users = Models.User;
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const uuid = require('uuid');
 const bodyParser = require('body-parser'),
 methodOverride = require('method-override');
+
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+const Movies = Models.Movie;
+const Users = Models.User;
 
 mongoose.connect('mongodb://localhost:27017/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -18,142 +19,6 @@ app.use(morgan('common'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
-let movies = [ 
-  {    
-      id: 1,
-      title: 'Titanic',
-      genre: {
-        name: 'Romance',
-        description: 'Genre description Romance',
-      },
-      director: {
-           name: 'James Cameron',
-           birth: 1954,
-      },
-  },
-  { 
-      id: 2,
-      title: 'Harry Potter and the Prisoner of Azkaban',
-      genre: {
-        name: 'Fantasy',
-        description: 'Genre description Fantasy',
-        },
-        director: {
-           name: 'Alfonso Cuaron',
-           birth: 1961,
-      },
-  },
-  {
-      id: 3,
-      title: 'The Holiday',
-      genre: {
-        name: 'Comedy',
-        description: 'Genre description Comedy',
-        },
-      director: {
-          name: 'Nancy Meyers',
-          birth: 1949,
-      },
-  },
-  {
-      id: 4,
-      title: 'Home for Christmas',
-      genre: {
-        name: 'Comedy',
-        description: 'Genre description Comedy',
-        },
-      director: {
-         name: 'Per-Olav Sorensen',
-         birth: 1963,
-      },
-  },
-  {
-      id: 5,
-      title: 'Home Alone',
-      genre: {
-        name: 'Family',
-        description: 'Genre description Family',
-      },
-      director: {
-         name: 'Chris Columbus',
-         birth: 1958,
-      },
-  },
-  {
-      id: 6,
-      title: 'Roman Holiday',
-      genre: {
-        name: 'Romance',
-        description: 'Genre description Romance',
-      },
-      director: {
-         name: 'William Wyler',
-         birth: 1902,
-      },
-  },
-  {
-      id: 7,
-      title: 'Call me by your name',
-      genre: {
-        name: 'Drama',
-        description: 'Genre description Drama',
-      },
-      director: {
-         name:'Luca Guadagnino',
-         birth: 1971,
-      },
-  },
-  {
-      id: 8,
-      title: 'Forrest Gump',
-      genre: {
-        name: 'Drama',
-        description: 'Genre description Drama',
-      },
-      director: {
-         name:'Robert Zemeckis',
-         birth: 1952,
-      },
-  },
-  {
-      id: 9,
-      title: 'Brokeback Mountain',
-      genre: {
-        name: 'Drama',
-        description: 'Genre description Drama',
-      },
-      director: {
-        name:'Ang Lee',
-        birth: 1954,
-      },
-  },
-  {
-      id: 10,
-      title: 'Carol',
-      genre: {
-        name: 'Drama',
-        description: 'Genre description Drama',
-      },
-      director: {
-        name:'Todd Haynes',
-        birth: 1961
-      },
-  },
-  ];
-
-  let users = [
-    {
-      id: 1,
-      name: 'Tamar',
-      favoriteMovie: 'Home for christmas',
-    },
-    {
-      id: 2,
-      name: 'Maggie',
-      favoriteMovie: [],
-    },
-  ];
 
 app.get('/', (req, res) => {
    res.send('Welcome to myFlix!');
