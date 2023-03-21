@@ -10,6 +10,8 @@ const uuid = require('uuid');
 const bodyParser = require('body-parser'),
 methodOverride = require('method-override');
 
+mongoose.connect('mongodb://localhost:27017/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(morgan('common'));
