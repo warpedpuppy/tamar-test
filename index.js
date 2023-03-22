@@ -48,27 +48,28 @@ app.get('/movies/:Title', (req, res) => {
   });
 });
 
-app.get('/genre/:genreName', (req, res) => {
-	const { genreName } = req.params;
-	const genre = movies.find((movie) => movie.genre.name === genreName).genre;
-
-	if (genre) {
-		res.status(200).json(genre);
-	} else {
-		res.status(404).send('Genre not in database');
-	}
+//info about genre by genre name
+app.get('/Genre/:Name', (req, res) => {
+	Genres.findOne({ Name: req.params.Name })
+  .then((Genre) => {
+    res.json(Genre.Description);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
-app.get('/director/:directorName', (req, res) => {
-	const { directorName } = req.params;
-	const director = movies.find((movie) => movie.director.name === directorName
-	).director;
-
-	if (director) {
-		res.status(200).json(director);
-	} else {
-		res.status(404).send('Director not in database');
-	}
+//info about directors by their name
+app.get('/Director/:Name', (req, res) => {
+	Directors.findOne({ Name: req.params.Name})
+  .then((Director) => {
+    res.json(Director);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 // Get all users
