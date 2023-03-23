@@ -145,9 +145,9 @@ app.put('/users/:UserName', (req, res) => {
 });
 
 //add a new movie to favs
-app.post('/users/:UserName/movies/:MovieID', (req, res) => {
+app.post('/users/:UserName/movies/:movieId', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-     $push: { favoriteMovies: req.params.MovieID }
+     $push: { favoriteMovies: req.params.movieId }
    },
    { new: true }, 
   (err, updatedUser) => {
@@ -161,7 +161,7 @@ app.post('/users/:UserName/movies/:MovieID', (req, res) => {
 });
 
 //remove a movie from their list of favorites
-app.delete('/users/:UserName/movies/:movieID', (req, res) => {
+app.delete('/users/:UserName/movies/:movieId', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
      $pull: { favoriteMovies: req.params.MovieID }
    },
