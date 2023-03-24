@@ -107,7 +107,7 @@ app.post('/users', (req, res) => {
           .create({
             UserName: req.body.UserName,
             Password: req.body.Password,
-            Email: req.body.Email,
+            email: req.body.email,
             Birthday: req.body.Birthday
           })
           .then((user) =>{res.status(201).json(user) })
@@ -147,7 +147,7 @@ app.put('/users/:UserName', (req, res) => {
 //add a new movie to favs
 app.post('/users/:UserName/movies/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-     $push: { favoriteMovies: req.params.MovieId }
+     $push: { FavoriteMovies: req.params.MovieId }
    },
    { new: true }, 
   (err, updatedUser) => {
@@ -163,7 +163,7 @@ app.post('/users/:UserName/movies/:MovieId', (req, res) => {
 //remove a movie from their list of favorites
 app.delete('/users/:UserName/movies/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-     $pull: { favoriteMovies: req.params.MovieId }
+     $pull: { FavoriteMovies: req.params.MovieId }
    },
    { new: true },
   (err, updatedUser) => {
