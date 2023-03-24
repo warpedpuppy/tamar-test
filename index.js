@@ -50,9 +50,9 @@ app.get('/movies/:Title', (req, res) => {
 
 //info about genre by genre name
 app.get('/movies/genre/:genreName', (req,res) => {
-  Movies.find({'Genre.Name':req.params.genreName})
+  Movies.findOne({'Genre.Name':req.params.genreName })
   .then((movie) => {
-      res.status(201).json(movie);
+      res.json(movie.Genre);
   })
   .catch((err) => {
       console.error(err);
@@ -62,9 +62,9 @@ app.get('/movies/genre/:genreName', (req,res) => {
 
 //info about directors by their name
 app.get('/movies/director/:directorName', (req,res) => {
-  Movies.find({'Director.Name': req.params.directorName})
+  Movies.findOne({ 'Director.Name': req.params.directorName})
   .then((movie) => {
-      res.json(movie);
+      res.json(movie.Director);
   })
   .catch((err) => {
       console.error(err);
@@ -145,9 +145,9 @@ app.put('/users/:UserName', (req, res) => {
 });
 
 //add a new movie to favs
-app.post('/users/:UserName/movies/:movieId', (req, res) => {
+app.post('/users/:UserName/movies/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-     $push: { favoriteMovies: req.params.movieId }
+     $push: { favoriteMovies: req.params.MovieId }
    },
    { new: true }, 
   (err, updatedUser) => {
@@ -161,9 +161,9 @@ app.post('/users/:UserName/movies/:movieId', (req, res) => {
 });
 
 //remove a movie from their list of favorites
-app.delete('/users/:UserName/movies/:movieId', (req, res) => {
+app.delete('/users/:UserName/movies/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-     $pull: { favoriteMovies: req.params.MovieID }
+     $pull: { favoriteMovies: req.params.MovieId }
    },
    { new: true },
   (err, updatedUser) => {
