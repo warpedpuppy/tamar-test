@@ -133,31 +133,32 @@ app.put('/users/:UserName', (req, res) => {
       Birthday: req.body.Birthday
     }
   },
-  { new: true }, 
-  (err, updatedUser) => {
-    if(err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
+  { new: true },)
+  .then((updatedUser) => {
+    res.json(updatedUser);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send("Error: " + err);
   });
 });
 
 //add a new movie to favs
-app.post('/users/:UserName/movies/:MovieId', (req, res) => {
-  Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-     $push: { FavoriteMovies: req.params.MovieId }
-   },
-   { new: true }, 
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
+app.post("/users/:UserName/movies/:MovieId", (req, res) => {
+  Users.findOneAndUpdate(
+    { UserName: req.params.UserName },
+    {
+      $push: { FavoriteMovies: req.params.MovieId },
+    },
+    { new: true }
+  )
+    .then((updatedUser) => {
       res.json(updatedUser);
-    }
-  });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 
 //remove a movie from their list of favorites
@@ -165,16 +166,16 @@ app.delete('/users/:UserName/movies/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
      $pull: { FavoriteMovies: req.params.MovieId }
    },
-   { new: true },
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
+   { new: true }
+  )
+    .then((updatedUser) => {
       res.json(updatedUser);
-    }
-  });
- });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
 // Delete a user by username
 app.delete('/users/:UserName', (req, res) => {
