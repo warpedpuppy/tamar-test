@@ -19,13 +19,14 @@ app.use(morgan('common'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
 let auth = require('./auth')(app);
 
 const passport = require('passport');
 require('./passport');
 
 
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/', (req, res) => {
    res.send('Welcome to myFlix!');
 });
 
@@ -102,7 +103,7 @@ app.get('/users/:UserName', passport.authenticate('jwt', { session: false }), (r
 });
 
 //add a new user
-app.post('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.post('/users', (req, res) => {
   Users.findOne({ UserName: req.body.UserName })
     .then((user) => {
       if (user) {
