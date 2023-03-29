@@ -7,12 +7,11 @@ let Users = Models.User,
   JWTStrategy = passportJWT.Strategy,
   ExtractJWT = passportJWT.ExtractJwt;
 
-passport.use(new LocalStrategy(
-    {
+//local strategy
+passport.use(new LocalStrategy({
   usernameField: 'UserName',
   passwordField: 'Password',
-    }, 
-    (UserName, password, callback) => {
+}, (UserName, password, callback) => {
   console.log(UserName + '  ' + password);
   Users.findOne({ UserName: UserName })
   .then((user) => {
@@ -29,10 +28,9 @@ passport.use(new LocalStrategy(
       console.log(error);
       return callback(error, false);
       });
-    }
-  )
-);
-    
+}));
+
+//JWT strategy
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: 'your_jwt_secret'
