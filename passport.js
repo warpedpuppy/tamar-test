@@ -12,7 +12,7 @@ passport.use(new LocalStrategy(
   usernameField: 'UserName',
   passwordField: 'Password',
     }, 
-    (username, password, callback) => {
+    (UserName, password, callback) => {
   console.log(UserName + '  ' + password);
   Users.findOne({ UserName: UserName })
   .then((user) => {
