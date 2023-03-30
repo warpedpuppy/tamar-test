@@ -16,7 +16,6 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.2",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
@@ -37,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/tamomsi/movie_api/issues"
   },
-  "homepage": "https://github.com/tamomsi/movie_api#readme"
+  "homepage": "https://github.com/tamomsi/movie_api#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }
